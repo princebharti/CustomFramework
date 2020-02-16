@@ -1,0 +1,5 @@
+version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+options: "59c377b6b153916ca3a3ce8d76c7c8d8"
+build_time: [1581875334, 61635000]
+inputs:
+  "/Users/princebharti/Desktop/MyFramework/MyFramework/SwitchView.swift": [9223372036, 854775807]

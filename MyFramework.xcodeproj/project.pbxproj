@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B15B438F23F9A0DF004DABDE /* MyFramework-Universal */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B15B439223F9A0DF004DABDE /* Build configuration list for PBXAggregateTarget "MyFramework-Universal" */;
+			buildPhases = (
+				B15B439323F9A14E004DABDE /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "MyFramework-Universal";
+			productName = "MyFramework-Universal";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B1B5ABA823F91ED0002B21FD /* MyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = B1B5ABA623F91ED0002B21FD /* MyFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B1B5ABAF23F91EED002B21FD /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5ABAE23F91EED002B21FD /* SwitchView.swift */; };
@@ -103,6 +117,9 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Prince Bharti";
 				TargetAttributes = {
+					B15B438F23F9A0DF004DABDE = {
+						CreatedOnToolsVersion = 11.3;
+					};
 					B1B5ABA223F91ED0002B21FD = {
 						CreatedOnToolsVersion = 11.3;
 						LastSwiftMigration = 1130;
@@ -123,6 +140,7 @@
 			projectRoot = "";
 			targets = (
 				B1B5ABA223F91ED0002B21FD /* MyFramework */,
+				B15B438F23F9A0DF004DABDE /* MyFramework-Universal */,
 			);
 		};
 /* End PBXProject section */
@@ -137,6 +155,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B15B439323F9A14E004DABDE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "####################\n# Optional Value\n####################\nREVEAL_ARCHIVE_IN_FINDER=true\n\n####################\n# Required Values\n####################\nFRAMEWORK_NAME=\"${PROJECT_NAME}\"\nSIMULATOR_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\nDEVICE_LIBRARY_PATH=\"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\nUNIVERSAL_LIBRARY_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\nFRAMEWORK=\"${UNIVERSAL_LIBRARY_DIR}/${FRAMEWORK_NAME}.framework\"\n######################\n# Build Frameworks\n######################\nxcodebuild -target ${PROJECT_NAME} -sdk iphonesimulator -configuration ${CONFIGURATION} clean build BITCODE_GENERATION_MODE=bitcode CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator 2>&1\nxcodebuild -target ${PROJECT_NAME} -sdk iphoneos -configuration ${CONFIGURATION} clean build BITCODE_GENERATION_MODE=bitcode CONFIGURATION_BUILD_DIR=${BUILD_DIR}/${CONFIGURATION}-iphoneos 2>&1\n######################\n# Create directory for universal\n######################\nrm -rf \"${UNIVERSAL_LIBRARY_DIR}\"\nmkdir \"${UNIVERSAL_LIBRARY_DIR}\"\nmkdir \"${FRAMEWORK}\"\n######################\n# Copy files Framework\n######################\ncp -r \"${DEVICE_LIBRARY_PATH}/.\" \"${FRAMEWORK}\"\n######################\n# Printing Paths for your referance\n######################\necho SIMULATOR_LIBRARY_PATH\necho \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${FRAMEWORK_NAME}.framework\"\necho DEVICE_LIBRARY_PATH\necho \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${FRAMEWORK_NAME}.framework\"\necho UNIVERSAL_LIBRARY_DIR\necho \"${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal\"\n######################\n# Make an universal binary\n######################\nlipo \"${SIMULATOR_LIBRARY_PATH}/${FRAMEWORK_NAME}\" \"${DEVICE_LIBRARY_PATH}/${FRAMEWORK_NAME}\" -create -output \"${FRAMEWORK}/${FRAMEWORK_NAME}\" | echo\n######################\n# For Swift framework, Swiftmodule needs to be copied in the universal framework\n######################\nif [ -d \"${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${SIMULATOR_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\nif [ -d \"${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" ]; then\ncp -f ${DEVICE_LIBRARY_PATH}/Modules/${FRAMEWORK_NAME}.swiftmodule/* \"${FRAMEWORK}/Modules/${FRAMEWORK_NAME}.swiftmodule/\" | echo\nfi\n######################\n# On Release, copy the result to release directory\n######################\nOUTPUT_DIR=\"${PROJECT_DIR}/Output/${FRAMEWORK_NAME}-${CONFIGURATION}-iphoneuniversal/\"\nrm -rf \"$OUTPUT_DIR\"\nmkdir -p \"$OUTPUT_DIR\"\ncp -r \"${FRAMEWORK}\" \"$OUTPUT_DIR\"\nif [ ${REVEAL_ARCHIVE_IN_FINDER} = true ]; then\nopen \"${OUTPUT_DIR}/\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B1B5AB9F23F91ED0002B21FD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -150,6 +188,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		B15B439023F9A0DF004DABDE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VGUC9DB7MZ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B15B439123F9A0DF004DABDE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VGUC9DB7MZ;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B1B5ABA923F91ED0002B21FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -204,7 +260,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -261,6 +317,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -324,6 +381,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B15B439223F9A0DF004DABDE /* Build configuration list for PBXAggregateTarget "MyFramework-Universal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B15B439023F9A0DF004DABDE /* Debug */,
+				B15B439123F9A0DF004DABDE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B1B5AB9D23F91ED0002B21FD /* Build configuration list for PBXProject "MyFramework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

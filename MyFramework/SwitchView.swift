@@ -24,4 +24,11 @@ public class SwitchView: UIView {
         self.backgroundColor = backgroundColor
     }
     
+    public init(backgroundColor: UIColor) {
+        let frame = UIScreen.main.bounds
+        super.init(frame: frame)
+        self.backgroundColor = backgroundColor
+        
+    }
+    
 }
