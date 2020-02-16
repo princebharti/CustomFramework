@@ -16,6 +16,7 @@ public class SwitchView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        //TODO: Please update according to the need.
     }
     
     public init(frame: CGRect,backgroundColor: UIColor){
