@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		B1B5ABA823F91ED0002B21FD /* MyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = B1B5ABA623F91ED0002B21FD /* MyFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B1B5ABAF23F91EED002B21FD /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B5ABAE23F91EED002B21FD /* SwitchView.swift */; };
+		B1B5ABB123F92038002B21FD /* PNNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B5ABB023F92038002B21FD /* PNNotification.m */; };
+		B1B5ABB323F920AB002B21FD /* PNNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = B1B5ABB223F92050002B21FD /* PNNotification.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B1B5ABA323F91ED0002B21FD /* MyFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MyFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1B5ABA623F91ED0002B21FD /* MyFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFramework.h; sourceTree = "<group>"; };
 		B1B5ABA723F91ED0002B21FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B1B5ABAE23F91EED002B21FD /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		B1B5ABB023F92038002B21FD /* PNNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PNNotification.m; sourceTree = "<group>"; };
+		B1B5ABB223F92050002B21FD /* PNNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNNotification.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +54,9 @@
 			children = (
 				B1B5ABA623F91ED0002B21FD /* MyFramework.h */,
 				B1B5ABA723F91ED0002B21FD /* Info.plist */,
+				B1B5ABAE23F91EED002B21FD /* SwitchView.swift */,
+				B1B5ABB223F92050002B21FD /* PNNotification.h */,
+				B1B5ABB023F92038002B21FD /* PNNotification.m */,
 			);
 			path = MyFramework;
 			sourceTree = "<group>";
@@ -60,6 +69,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1B5ABA823F91ED0002B21FD /* MyFramework.h in Headers */,
+				B1B5ABB323F920AB002B21FD /* PNNotification.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +105,7 @@
 				TargetAttributes = {
 					B1B5ABA223F91ED0002B21FD = {
 						CreatedOnToolsVersion = 11.3;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -131,6 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1B5ABB123F92038002B21FD /* PNNotification.m in Sources */,
+				B1B5ABAF23F91EED002B21FD /* SwitchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +273,7 @@
 		B1B5ABAC23F91ED0002B21FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VGUC9DB7MZ;
@@ -276,6 +290,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.prince.MyFramework;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -284,6 +299,7 @@
 		B1B5ABAD23F91ED0002B21FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = VGUC9DB7MZ;
